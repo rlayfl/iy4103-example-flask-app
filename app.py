@@ -37,6 +37,8 @@ class Like(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     place_id = db.Column(db.Integer, db.ForeignKey('place.id'), nullable=False)
 
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -48,6 +50,19 @@ def about():
 @app.route('/faq')
 def faq():
     return render_template('faq.html')
+
+# This is just a simple page which shows how to get data onto your web pages, making it a data-driven website
+@app.route('/data')
+def data():
+    users = User.query.all()
+    places = Place.query.all()
+    comments = Comment.query.all()
+    likes = Like.query.all()
+    return render_template('data.html',
+                           users=users,
+                           places=places,
+                           comments=comments,
+                           likes=likes)
 
 if __name__ == '__main__':
     app.run(debug=True)

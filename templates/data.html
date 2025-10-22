@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>Database Contents</title></head>
+  <body>
+    <h1>Database Contents</h1>
+    <p><a href="{{ url_for('index') }}">Home</a></p>
+
+    <h2>Places</h2>
+    {% if places %}
+      <ul>
+        {% for p in places %}
+          <li>
+            <strong>{{ p.name }}</strong>
+            — {{ p.comments|length }} comment(s),
+            {{ p.likes|length }} like(s)
+            {% if p.comments %}
+              <ul>
+                {% for c in p.comments %}
+                  <li>
+                    "{{ c.text }}"
+                    {% if c.user %}— by {{ c.user.username }}{% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No places yet.</p>
+    {% endif %}
+
+    <h2>Users</h2>
+    {% if users %}
+      <ul>
+        {% for u in users %}
+          <li>{{ u.username }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No users yet.</p>
+    {% endif %}
+
+    <h2>All Comments</h2>
+    {% if comments %}
+      <ul>
+        {% for c in comments %}
+          <li>
+            {{ c.user.username if c.user else 'Unknown user' }} on
+            {{ c.place.name if c.place else 'Unknown place' }}:
+            "{{ c.text }}"
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No comments yet.</p>
+    {% endif %}
+
+    <h2>All Likes</h2>
+    {% if likes %}
+      <ul>
+        {% for l in likes %}
+          <li>
+            {{ l.user.username if l.user else 'Unknown user' }} likes
+            {{ l.place.name if l.place else 'Unknown place' }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No likes yet.</p>
+    {% endif %}
+  </body>
+</html>
