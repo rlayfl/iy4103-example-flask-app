@@ -49,6 +49,10 @@ def about():
 def faq():
     return render_template('faq.html')
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
 # This is just a simple page which shows how to get data onto your web pages, making it a data-driven website
 @app.route('/data')
 def data():
