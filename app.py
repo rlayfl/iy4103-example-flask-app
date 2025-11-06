@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -65,6 +65,18 @@ def data():
                            places=places,
                            comments=comments,
                            likes=likes)
+
+
+@app.route('/uploadContact', methods=['POST'])
+def upload_contact():
+    name = request.form.get('name')
+    phone = request.form.get('phone')
+    email = request.form.get('email')
+    marketing = request.form.get('marketing_opt_in')
+    
+    print(name, phone, email, marketing)
+
+    return f"Received: {name}, {phone}, {email}, Opt-in: {marketing}"
 
 if __name__ == '__main__':
     app.run(debug=True)
