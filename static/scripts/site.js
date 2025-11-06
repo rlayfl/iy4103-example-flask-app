@@ -4,4 +4,9 @@ function getFormInputFieldsContent() {
 
     alert("Your phone number is : " + phoneNumber)
 
+    if (length(phoneNumber) < 10) {
+        alert("Please enter a valid phone number");
+        return false;
+    }
+
 }

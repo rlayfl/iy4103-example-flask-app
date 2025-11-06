@@ -37,6 +37,10 @@ class Like(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     place_id = db.Column(db.Integer, db.ForeignKey('place.id'), nullable=False)
 
+@app.route('/')
+def home():
+    return render_template('home.html')
+
 @app.route('/example')
 def example():
     return render_template('example.html')
