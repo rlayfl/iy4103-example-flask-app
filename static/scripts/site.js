@@ -1,14 +1,7 @@
-timeShowing = false;
+function getFormInputFieldsContent() {
+    
+    var phoneNumber = document.getElementById("inputPhone").value;
 
-function showOrHideTime() {
-
-    if (!timeShowing) {
-        alert("showing time")
-        timeShowing = true;
-
-    } else {
-        alert("hiding time")
-        timeShowing = false;
-    } 
+    alert("Your phone number is : " + phoneNumber)
 
 }
